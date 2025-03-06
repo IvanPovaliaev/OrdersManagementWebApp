@@ -1,12 +1,12 @@
 ﻿@model OrderViewModel
 @{
     ViewData["Title"] = $"Заказ №{Model.Id}";
+    var imageUrl = "/img/OrderCreated.png";
 }
 
 <section class="container mb-3">
     <div class="row justify-content-center">
-        <div id="animation-box" class="order-animation-box">
-        </div>
+        <img class="order-created-image" src="@imageUrl" alt="OrderSuccessfullyCreated">
     </div>
 
     <div class="row justify-content-center">
@@ -18,14 +18,3 @@
         </span>
     </div>
 </section>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-<script>
-    var animation = lottie.loadAnimation({
-        container: document.getElementById('animation-box'),
-        path: '/animations/OrderCreated.json',
-        renderer: 'svg',
-        loop: true,
-        autoplay: true,
-    });
-</script>
