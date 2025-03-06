@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using OrdersManagement.Application.Models;
 using OrdersManagement.Application.Requests.Orders.Commands.AddOrder;
 using OrdersManagement.Application.Requests.Orders.Queries.GetAllOrders;
+using OrdersManagement.Application.Requests.Orders.Queries.GetOrder;
 using OrdersManagementWebApp.Models;
 using System.Diagnostics;
 
@@ -29,6 +30,19 @@ namespace OrdersManagementWebApp.Controllers
         {
             var orders = await _sender.Send(new GetAllOrdersQuery());
             return View(orders);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Get(Guid id)
+        {
+            var result = await _sender.Send(new GetOrderQuery(id));
+
+            if (!result.IsSuccess)
+            {
+                return BadRequest();
+            }
+
+            return PartialView("_OrderDetails", result.Value);
         }
 
         [HttpPost]

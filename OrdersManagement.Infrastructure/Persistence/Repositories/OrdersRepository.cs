@@ -23,6 +23,23 @@ namespace OrdersManagement.Infrastructure.Persistence.Repositories
                                                 .ToListAsync();
         }
 
+        public async Task<Result<Order>> GetAsync(Guid id)
+        {
+            var order = await _databaseContext.Orders.AsNoTracking()
+                                                     .FirstOrDefaultAsync(ord => ord.Id == id);
+
+            if (order is null)
+            {
+                return new();
+            }
+
+            return new()
+            {
+                IsSuccess = true,
+                Value = order
+            };
+        }
+
         public async Task<Result<Order>> AddAsync(Order order)
         {
             try
@@ -39,5 +56,7 @@ namespace OrdersManagement.Infrastructure.Persistence.Repositories
                 return new();
             }
         }
+
+
     }
 }
