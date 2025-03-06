@@ -1,26 +1,24 @@
-using System.Diagnostics;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using OrdersManagement.Application.Models;
 using OrdersManagementWebApp.Models;
+using System.Diagnostics;
 
 namespace OrdersManagementWebApp.Controllers
 {
-    public class HomeController : Controller
+    public class OrderController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ISender _sender;
 
-        public HomeController(ILogger<HomeController> logger)
+        public OrderController(ISender sender)
         {
-            _logger = logger;
+            _sender = sender;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
+            var order = new AddOrdersViewModel();
+            return View(order);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

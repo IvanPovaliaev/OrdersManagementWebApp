@@ -21,6 +21,6 @@ namespace OrdersManagement.Application.Models
         public double Weight { get; init; }
 
         [Required(ErrorMessage = "Обязательное поле")]
-        public DateTime ExpirationDate { get; set; }
+        public DateTime ExpirationDate { get; set; } = DateTime.Now.AddDays(3).Date;
     }
 }
