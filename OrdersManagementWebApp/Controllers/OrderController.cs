@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OrdersManagement.Application.Models;
 using OrdersManagement.Application.Requests.Orders.Commands.AddOrder;
+using OrdersManagement.Application.Requests.Orders.Queries.GetAllOrders;
 using OrdersManagementWebApp.Models;
 using System.Diagnostics;
 
@@ -23,6 +24,12 @@ namespace OrdersManagementWebApp.Controllers
             return View(order);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> All()
+        {
+            var orders = await _sender.Send(new GetAllOrdersQuery());
+            return View(orders);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create(AddOrdersViewModel order)
