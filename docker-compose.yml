@@ -1,0 +1,36 @@
+services:
+  postgre:
+    container_name: orders_management_db
+    image: postgres:latest
+    environment: 
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Qwerty123!
+      POSTGRES_DB: OrderManagement.Db
+    ports:
+      - 5432:5432
+    networks:
+      - orders-management-network
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  orders_management_webapp:
+    image: ${DOCKER_REGISTRY-}orders_management_webapp
+    build:
+      context: .
+      dockerfile: OrdersManagementWebApp/Dockerfile
+    environment:
+      ConnectionStrings__OrdersManagementApp.Database: "Host=postgre;Port=5432;Database=OrderManagement.Db;Username=postgres;Password=Qwerty123!;"
+    depends_on:
+      - postgre
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+      - 8081:8081
+    networks:
+      - orders-management-network
+
+networks:
+    orders-management-network:
+
+volumes:
+    postgres_data:
