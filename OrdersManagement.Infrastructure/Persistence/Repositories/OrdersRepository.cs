@@ -2,6 +2,7 @@
 using OrdersManagement.Domain;
 using OrdersManagement.Domain.Contracts;
 using OrdersManagement.Domain.Entities;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -22,9 +23,21 @@ namespace OrdersManagement.Infrastructure.Persistence.Repositories
                                                 .ToListAsync();
         }
 
-        public Task<Result<Order>> AddAsync(Order order)
+        public async Task<Result<Order>> AddAsync(Order order)
         {
-            throw new System.NotImplementedException();
+            try
+            {
+                await _databaseContext.Orders.AddAsync(order);
+                return new()
+                {
+                    IsSuccess = true,
+                    Value = order
+                };
+            }
+            catch (Exception)
+            {
+                return new();
+            }
         }
     }
 }

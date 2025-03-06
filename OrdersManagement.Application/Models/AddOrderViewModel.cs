@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OrdersManagement.Application.Validations;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace OrdersManagement.Application.Models
@@ -17,10 +18,13 @@ namespace OrdersManagement.Application.Models
         [Required(ErrorMessage = "Обязательное поле")]
         public string RecipientAddress { get; init; }
 
-        [Range(1, int.MaxValue, ErrorMessage = "Значение должно быть больше 0")]
+        [Required(ErrorMessage = "Обязательное поле")]
+        [Range(0.0, double.MaxValue, ErrorMessage = "Значение должно быть больше 0")]
         public double Weight { get; init; }
 
         [Required(ErrorMessage = "Обязательное поле")]
-        public DateTime ExpirationDate { get; set; } = DateTime.Now.AddDays(3).Date;
+        [DataType(DataType.Date)]
+        [ExpirationDateValidation(3)]
+        public DateTime ExpirationDate { get; set; }
     }
 }

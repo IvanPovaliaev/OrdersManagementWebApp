@@ -27,6 +27,7 @@ namespace OrdersManagement.Application.Requests.Orders.Commands.AddOrder
         public async Task<Result<OrderViewModel>> Handle(AddOrderCommand request, CancellationToken cancellationToken)
         {
             var dbOrder = _mapper.Map<Order>(request.Order);
+
             var result = await _unitOfWork.OrdersRepository.AddAsync(dbOrder);
 
             if (!result.IsSuccess)

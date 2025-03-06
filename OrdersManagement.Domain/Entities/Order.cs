@@ -9,7 +9,7 @@ namespace OrdersManagement.Domain.Entities
         public required string SenderAddress { get; init; }
         public required string RecipientCity { get; init; }
         public required string RecipientAddress { get; init; }
-        public required int Weight { get; init; }
-        public required DateTime ExpirationDate { get; set; }
+        public required double Weight { get; init; }
+        public required DateTime ExpirationDate { get; set; } = DateTime.UtcNow;
     }
 }

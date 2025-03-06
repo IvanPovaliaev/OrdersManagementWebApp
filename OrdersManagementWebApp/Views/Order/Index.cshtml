@@ -1,10 +1,10 @@
 ﻿@model AddOrdersViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
-    var initialDate = DateTime.Now;
+    ViewData["Title"] = "Форма 1";
+    var initialDate = DateTime.Today.AddDays(3);
+    Model.ExpirationDate = initialDate;
 }
-
 
 <div class="row">
     <div class=" d-flex col-9 flex-column justify-content-between align-content-center">
@@ -14,60 +14,76 @@
 
         <div class="d-flex col">
             <form method="post" id="orderForm" asp-controller="Order" asp-action="Create" class="w-100">
-                <h5>Город отправителя</h5>
                 <div class="mb-3 col-12">
+                    <label asp-for="SenderCity" class="form-label fw-bold">
+                        Город отправителя
+                    </label>
                     <input class="form-control input-field"
                            asp-for="SenderCity"
                            placeholder="г.Санкт-Петербург">
                     <span asp-validation-for="SenderCity" class="validation-error-message"></span>
                 </div>
 
-                <h5>Адрес отправителя</h5>
                 <div class="mb-3 col-12">
+                    <label asp-for="SenderAddress" class="form-label fw-bold">
+                        Адрес отправителя
+                    </label>
                     <input class="form-control input-field"
                            asp-for="SenderAddress"
                            placeholder="Набережная реки Карповки, 5к22">
                     <span asp-validation-for="SenderAddress" class="validation-error-message"></span>
                 </div>
 
-                <h5>Город получателя</h5>
                 <div class="mb-3 col-12">
+                    <label asp-for="RecipientCity" class="form-label fw-bold">
+                        Город получателя
+                    </label>
                     <input class="form-control input-field"
                            asp-for="RecipientCity"
                            placeholder="г.Санкт-Петербург">
-                    <span asp-validation-for="SenderCity" class="validation-error-message"></span>
+                    <span asp-validation-for="RecipientCity" class="validation-error-message"></span>
                 </div>
 
-                <h5>Адрес получателя</h5>
                 <div class="mb-3 col-12">
+                    <label asp-for="RecipientAddress" class="form-label fw-bold">
+                        Адрес получателя
+                    </label>
                     <input class="form-control input-field"
                            asp-for="RecipientAddress"
                            placeholder="Набережная реки Карповки, 5к22">
-                    <span asp-validation-for="SenderAddress" class="validation-error-message"></span>
+                    <span asp-validation-for="RecipientAddress" class="validation-error-message"></span>
                 </div>
 
                 <div class="row d-flex justify-content-between gx-3 mb-3">
                     <div class="col-6">
-                        <h5>Вес груза, г</h5>
-                        <input class="form-control input-field"
+                        <label asp-for="Weight" class="form-label fw-bold">
+                            Вес груза, кг
+                        </label>
+                        <input type="number" class="form-control input-field"
                                asp-for="Weight"
-                               placeholder="Укажите вес груза">
+                               placeholder="Укажите вес груза"
+                               step="0.01">
                         <span asp-validation-for="Weight" class="validation-error-message"></span>
                     </div>
 
                     
                     <div class="col-6">
-                        <h5>Дата забора груза</h5>
+                        <label asp-for="ExpirationDate" class="form-label fw-bold">
+                            Дата забора груза
+                        </label>
                         <input class="form-control input-field"
                                asp-for="ExpirationDate"
-                               value="@initialDate">
+                               min="@initialDate.ToString("yyyy-MM-dd")">
                         <span asp-validation-for="ExpirationDate" class="validation-error-message"></span>
                     </div>
                 </div>
 
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <button class="btn btn-primary mb-3" type="submit">
+                    Добавить заказ
+                </button>
             </form>
         </div>
     </div>
 </div>
-

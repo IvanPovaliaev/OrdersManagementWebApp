@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using OrdersManagement.Application.Models;
 using OrdersManagement.Domain.Entities;
+using System;
 
 namespace OrdersManagement.Application.Mappers
 {
@@ -9,7 +10,9 @@ namespace OrdersManagement.Application.Mappers
         public MappingProfile()
         {
             CreateMap<Order, OrderViewModel>().ReverseMap();
-            CreateMap<AddOrdersViewModel, Order>();
+            CreateMap<AddOrdersViewModel, Order>()
+                .ForMember(destination => destination.ExpirationDate,
+                            option => option.MapFrom(source => DateTime.SpecifyKind(source.ExpirationDate, DateTimeKind.Utc)));
         }
     }
 }
