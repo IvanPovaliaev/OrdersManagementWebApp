@@ -12,7 +12,7 @@ namespace OrdersManagement.Application.Requests.Orders.Queries.GetAllOrders
     /// <summary>
     /// Handles the <see cref="GetAllOrdersQuery"/> to retrieve all orders from the system.
     /// </summary>
-    public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, IEnumerable<OrderViewModel>>
+    public class GetAllOrdersQueryHandler : IRequestHandler<GetAllOrdersQuery, IEnumerable<ShortOrderInfoViewModel>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -23,10 +23,10 @@ namespace OrdersManagement.Application.Requests.Orders.Queries.GetAllOrders
             _mapper = mapper;
         }
 
-        public async Task<IEnumerable<OrderViewModel>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<ShortOrderInfoViewModel>> Handle(GetAllOrdersQuery request, CancellationToken cancellationToken)
         {
             var dbOrders = await _unitOfWork.OrdersRepository.GetAllAsync();
-            return dbOrders.Select(_mapper.Map<OrderViewModel>);
+            return dbOrders.Select(_mapper.Map<ShortOrderInfoViewModel>);
         }
     }
 }
