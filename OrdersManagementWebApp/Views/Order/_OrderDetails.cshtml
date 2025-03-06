@@ -1,11 +1,53 @@
 ﻿@model OrderViewModel
 
-<div>
-    <p><strong>Номер заказа:</strong> @Model.Id</p>
-    <p><strong>Город отправителя:</strong> @Model.SenderCity</p>
-    <p><strong>Адрес отправителя:</strong> @Model.SenderAddress</p>
-    <p><strong>Город получателя:</strong> @Model.RecipientCity</p>
-    <p><strong>Адрес получателя:</strong> @Model.RecipientAddress</p>
-    <p><strong>Вес:</strong> @Model.Weight кг</p>
-    <p><strong>Дата забора:</strong> @Model.ExpirationDate.ToString("d")</p>
-</div>
+
+<table class="table table-hover">
+    <tr>
+        <td class="col-5">
+            <strong>Номер заказа</strong>
+        </td>
+        <td class="col">@Model.Id</td>
+    </tr>
+
+    <tr>
+        <td class="col-5">
+            <strong>Город отправителя</strong>
+        </td>
+        <td class="col">@Model.SenderCity</td>
+    </tr>
+
+    <tr>
+        <td class="col-5">
+            <strong>Адрес отправителя</strong>
+        </td>
+        <td class="col">@Model.SenderAddress</td>
+    </tr>
+
+    <tr>
+        <td class="col-5">
+            <strong>Город получателя</strong>
+        </td>
+        <td class="col">@Model.RecipientCity</td>
+    </tr>
+
+    <tr>
+        <td class="col-5">
+            <strong>Адрес получателя</strong>
+        </td>
+        <td class="col">@Model.RecipientAddress</td>
+    </tr>
+
+    <tr>
+        <td class="col-5">
+            <strong>Вес, кг</strong>
+        </td>
+        <td class="col">@Model.Weight</td>
+    </tr>
+
+    <tr>
+        <td class="col-5">
+            <strong>Дата забора</strong>
+        </td>
+        <td class="col">@Model.ExpirationDate.ToString("d")</td>
+    </tr>
+</table>
