@@ -65,10 +65,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   orders_management_webapp:
-    image: ${DOCKER_REGISTRY-}orders_management_webapp
-    build:
-      context: .
-      dockerfile: OrdersManagementWebApp/Dockerfile
+    image: ivanpovaliaev/orders_management_webapp:latest
     environment:
       DB_CONNECTION_STRING: "Host=postgre;Port=5432;Database=OrderManagement.Db;Username=postgres;Password=Qwerty123!;"
     depends_on:
