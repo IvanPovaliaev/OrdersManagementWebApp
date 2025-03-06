@@ -77,7 +77,7 @@ namespace OrdersManagementWebApp.Controllers
             var result = await _sender.Send(new AddOrderCommand(order));
             if (!result.IsSuccess)
             {
-                return BadRequest(result);
+                return BadRequest();
             }
 
             return View(result.Value);

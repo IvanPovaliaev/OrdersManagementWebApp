@@ -27,11 +27,9 @@ namespace OrdersManagement.Application.Requests.Orders.Queries.GetOrder
                 return new();
             }
 
-            return new()
-            {
-                IsSuccess = true,
-                Value = _mapper.Map<OrderViewModel>(result.Value)
-            };
+            var order = _mapper.Map<OrderViewModel>(result.Value);
+
+            return new(order);
         }
     }
 }

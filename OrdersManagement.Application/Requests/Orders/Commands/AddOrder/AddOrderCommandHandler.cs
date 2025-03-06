@@ -37,11 +37,7 @@ namespace OrdersManagement.Application.Requests.Orders.Commands.AddOrder
 
             var orderVM = _mapper.Map<OrderViewModel>(result.Value);
 
-            return new()
-            {
-                IsSuccess = true,
-                Value = orderVM
-            };
+            return new(orderVM);
         }
     }
 }

@@ -33,11 +33,7 @@ namespace OrdersManagement.Infrastructure.Persistence.Repositories
                 return new();
             }
 
-            return new()
-            {
-                IsSuccess = true,
-                Value = order
-            };
+            return new(order);
         }
 
         public async Task<Result<Order>> AddAsync(Order order)
@@ -45,11 +41,7 @@ namespace OrdersManagement.Infrastructure.Persistence.Repositories
             try
             {
                 await _databaseContext.Orders.AddAsync(order);
-                return new()
-                {
-                    IsSuccess = true,
-                    Value = order
-                };
+                return new(order);
             }
             catch (Exception)
             {
