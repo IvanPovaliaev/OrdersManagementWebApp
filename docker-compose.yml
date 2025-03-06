@@ -19,7 +19,7 @@ services:
       context: .
       dockerfile: OrdersManagementWebApp/Dockerfile
     environment:
-      ConnectionStrings__OrdersManagementApp.Database: "Host=postgre;Port=5432;Database=OrderManagement.Db;Username=postgres;Password=Qwerty123!;"
+      DB_CONNECTION_STRING: "Host=postgre;Port=5432;Database=OrderManagement.Db;Username=postgres;Password=Qwerty123!;"
     depends_on:
       - postgre
     restart: unless-stopped

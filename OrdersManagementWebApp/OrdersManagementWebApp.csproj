@@ -10,6 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="dotenv.net" Version="3.2.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -26,6 +27,12 @@
   <ItemGroup>
     <ProjectReference Include="..\OrdersManagement.Application\OrdersManagement.Application.csproj" />
     <ProjectReference Include="..\OrdersManagement.Infrastructure\OrdersManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update=".env">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

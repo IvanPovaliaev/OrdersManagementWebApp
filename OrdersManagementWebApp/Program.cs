@@ -1,3 +1,4 @@
+using dotenv.net;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -6,6 +7,8 @@ using OrdersManagement.Infrastructure;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
+
+DotEnv.Load();
 
 builder.Host.UseSerilog((context, configuration) => configuration
             .ReadFrom.Configuration(context.Configuration)
