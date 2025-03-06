@@ -56,7 +56,5 @@ namespace OrdersManagement.Infrastructure.Persistence.Repositories
                 return new();
             }
         }
-
-
     }
 }
