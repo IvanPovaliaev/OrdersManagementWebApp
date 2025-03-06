@@ -3,6 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace OrdersManagement.Application.Validations
 {
+    /// <summary>
+    /// Validation attribute that ensures the expiration date is not earlier than a specified number of days from today.
+    /// </summary>
     public class ExpirationDateValidationAttribute : ValidationAttribute
     {
         private readonly int _minDays;
