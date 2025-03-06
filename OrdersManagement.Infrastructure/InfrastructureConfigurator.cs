@@ -4,6 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using OrdersManagement.Domain.Contracts;
 using OrdersManagement.Infrastructure.Persistence;
 using OrdersManagement.Infrastructure.Persistence.Repositories;
+using OrdersManagement.Infrastructure.Persistence.UnitOfWork;
 
 namespace OrdersManagement.Infrastructure
 {
@@ -21,6 +22,7 @@ namespace OrdersManagement.Infrastructure
             services.AddDbContext<DatabaseContext>(options => options.UseNpgsql(connection), ServiceLifetime.Scoped);
 
             services.AddScoped<IOrdersRepository, OrdersRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             return services;
         }
     }

@@ -2,7 +2,7 @@
 
 namespace OrdersManagement.Application.Models
 {
-    public class OrdersViewModel
+    public class OrderViewModel
     {
         public Guid Id { get; init; }
         public required string SenderCity { get; init; }

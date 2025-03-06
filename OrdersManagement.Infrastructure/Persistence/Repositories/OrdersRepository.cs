@@ -16,7 +16,7 @@ namespace OrdersManagement.Infrastructure.Persistence.Repositories
             _databaseContext = databaseContext;
         }
 
-        public async Task<List<Order>> GetAll()
+        public async Task<List<Order>> GetAllAsync()
         {
             return await _databaseContext.Orders.AsNoTracking()
                                                 .ToListAsync();

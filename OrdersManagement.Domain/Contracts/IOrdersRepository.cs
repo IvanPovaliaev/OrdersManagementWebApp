@@ -7,7 +7,7 @@ namespace OrdersManagement.Domain.Contracts
 {
     public interface IOrdersRepository
     {
-        public Task<List<Order>> GetAll();
+        public Task<List<Order>> GetAllAsync();
 
         public Task<Result> AddAsync(Order order);
     }

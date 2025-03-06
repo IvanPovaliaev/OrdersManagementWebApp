@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using MediatR;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using OrdersManagement.Application.Behaviors;
+using OrdersManagement.Application.Mappers;
 using System.Reflection;
 
 namespace OrdersManagement.Application
@@ -15,6 +18,9 @@ namespace OrdersManagement.Application
         public static IServiceCollection AddApplication(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
+            services.AddScoped(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkBehavior<,>));
+
+            services.AddAutoMapper(typeof(MappingProfile).Assembly);
 
             return services;
         }
