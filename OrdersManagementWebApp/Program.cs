@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using OrdersManagement.Application;
 using OrdersManagement.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddApplication(builder.Configuration);
@@ -11,11 +13,9 @@ builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Order/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+    app.UseExceptionHandler("/Error/");
     app.UseHsts();
 }
 
@@ -28,6 +28,5 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Order}/{action=Index}/{id?}")
     .WithStaticAssets();
-
 
 app.Run();
